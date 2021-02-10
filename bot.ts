@@ -1,4 +1,6 @@
 import { Client, DiscordAPIError } from 'discord.js';
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname+'/.env' });
 
 const client = new Client();
 
@@ -11,4 +13,4 @@ client.on('message', (msg) => {
         msg.reply('pong');
     }
 });
-client.login("ODA4ODg3NjkxOTU3NTAxOTYy.YCNFXg.N9ySRyD2XXQ9KIj5FLsaDF49BJ4");
+client.login(process.env.BOT_TOKEN);
