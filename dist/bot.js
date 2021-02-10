@@ -21,15 +21,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var discord_js_1 = require("discord.js");
 var dotenv = __importStar(require("dotenv"));
+var app_1 = require("./app");
 dotenv.config({ path: __dirname + '/.env' });
 var client = new discord_js_1.Client();
 client.on('ready', function () {
     var _a;
     console.log("Logged in as " + ((_a = client.user) === null || _a === void 0 ? void 0 : _a.tag));
 });
-client.on('message', function (msg) {
-    if (msg.content === 'ping') {
-        msg.reply('pong');
+client.on('message', function (message) {
+    if (message.content === 'ping') {
+        message.reply("" + app_1.tweet);
     }
 });
 client.login(process.env.BOT_TOKEN);
