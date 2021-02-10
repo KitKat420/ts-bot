@@ -22,6 +22,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.tweet = void 0;
 var axios_1 = __importDefault(require("axios"));
 var dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: __dirname + '/.env' });
@@ -30,11 +31,13 @@ var instance = axios_1.default.create({
     baseURL: url,
     headers: { 'Authorization': "Bearer " + process.env.BEARER_TOKEN }
 });
-instance.get('/2/users/44196397/tweets')
+var tweet = instance.get('/2/users/44196397/tweets')
     .then(function (response) {
     var twitterData = response.data;
+    exports.tweet = tweet = twitterData.data[0].text;
     console.log(twitterData.data[0].text);
 })
     .catch(function (error) {
     console.log(error);
 });
+exports.tweet = tweet;
